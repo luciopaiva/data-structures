@@ -1,29 +1,39 @@
 
 export class BinarySearch {
 
-    public static rank(wantedValue: number, orderedList: number[]): { index: number, rounds: number } {
+    public static DEBUG = true;
+
+    public static rank(wantedValue: number, orderedList: number[]): number {
         let lo = 0;
         let hi = orderedList.length - 1;
-        let result = {
-            index: 0,
-            rounds: 0
-        };
+        let mid = 0;
+        let rounds = 0;
+
+        if (BinarySearch.DEBUG) {
+            console.info(`Looking for value ${wantedValue}.`);
+            console.info(`The list: [${orderedList.join(', ')}]`);
+        }
 
         while (lo <= hi) {
-            result.rounds++;
-            result.index = lo + Math.floor((hi - lo) / 2);
-            let currentValue = orderedList[result.index];
+            rounds++;
+            if (BinarySearch.DEBUG) {
+                console.info(`\nRound ${rounds}:`);
+                console.info(`\tlist[${lo}..${hi}] => [${orderedList.slice(lo, hi + 1).join(', ')}]`);
+            }
+
+            mid = lo + Math.floor((hi - lo) / 2);
+            let currentValue = orderedList[mid];
+
             if (currentValue == wantedValue) {
-                return result;
+                return mid;
             } else if (currentValue < wantedValue) {
-                lo = result.index + 1;
+                lo = mid + 1;
             } else if (currentValue > wantedValue) {
-                hi = result.index - 1;
+                hi = mid - 1;
             }
         }
 
-        result.index = -1;
-        return result;
+        return -1;
     }
 
     public static main() {
@@ -38,10 +48,8 @@ export class BinarySearch {
             list.push(curVal);
         }
 
-        console.info(list.join(', '));
         let selectedIndex = Math.floor(Math.random() * N);
         let result = BinarySearch.rank(list[selectedIndex], list);
-        console.info(`The value ${list[selectedIndex]} is at position ${result.index} and it took ${result.rounds} ` +
-            `rounds to find it.`);
+        console.info(`The value ${list[selectedIndex]} is at position ${result}.`);
     }
 }
