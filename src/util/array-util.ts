@@ -37,4 +37,35 @@ export class ArrayUtil {
         if (list == null) return null;
         return list.slice(0);
     }
+
+    /**
+     * Zip two arrays together in a third new array. The length of the resulting array is the length of the biggest
+     * input array, in case they have different sizes. If that is the case, the remaining missing entries of the smaller
+     * array will be padded with the `null` value.
+     *
+     * @param l1 first array
+     * @param l2 second array
+     * @returns {Array} resulting, zipped array containing both input arrays
+     */
+    public static zip(l1: any[], l2: any[]): any[] {
+        let base, other;
+        let result = [];
+
+        if (l1.length >= l2.length) {
+            base = l1;
+            other = l2;
+        } else {
+            base = l2;
+            other = l1;
+        }
+
+        let n = base.length;
+        let otherLength = other.length;
+        for (let i = 0; i < n; i++) {
+            let otherValue = (i >= otherLength) ? null : other[i];
+            result.push([base[i], otherValue]);
+        }
+
+        return result;
+    }
 }
