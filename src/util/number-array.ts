@@ -29,30 +29,4 @@ export class NumberArray extends ArrayUtil {
         }
         return result;
     }
-
-    /**
-     * @param list1
-     * @param list2
-     * @returns {boolean} true if arrays are equal in size and content; false, otherwise
-     */
-    public static compare(list1: number[], list2: number[]): boolean {
-        if (list1 == null || list2 == null || list1.length != list2.length) {
-            return false;
-        }
-
-        return list1.every((item, index) => list2[index] === item);
-    }
-
-    /**
-     * Clones a list of numbers.
-     *
-     * @param list the original list to be cloned
-     * @returns {number[]} the new copy
-     */
-    public static clone(list: number[]): number[] {
-        if (list == null) return null;
-        let result = [];
-        list.forEach(item => result.push(item));
-        return result;
-    }
 }
