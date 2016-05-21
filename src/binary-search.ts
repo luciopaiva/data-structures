@@ -1,7 +1,7 @@
 
 export class BinarySearch {
 
-    public static DEBUG = true;
+    public static DEBUG = false;
 
     public static rank(wantedValue: number, orderedList: number[]): number {
         let lo = 0;
@@ -34,22 +34,5 @@ export class BinarySearch {
         }
 
         return -1;
-    }
-
-    public static main() {
-        let N = 20;
-        let MAX_STEP = 10;
-        let list = [];
-
-        let curVal = 1 + Math.floor(Math.random() * MAX_STEP);
-        list.push(curVal);
-        for (let i = 0; i < N - 1; i++) {
-            curVal += 1 + Math.floor(Math.random() * MAX_STEP);
-            list.push(curVal);
-        }
-
-        let selectedIndex = Math.floor(Math.random() * N);
-        let result = BinarySearch.rank(list[selectedIndex], list);
-        console.info(`The value ${list[selectedIndex]} is at position ${result}.`);
     }
 }
