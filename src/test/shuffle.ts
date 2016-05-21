@@ -23,6 +23,6 @@ describe('Shuffle', function () {
             }
         }
 
-        assert(!isEqual, "Arrays should not be equal after shuffling.");
+        assert(!isEqual, "Arrays should not be equal after shuffling (ok, there's a slight possibility that it could).");
     });
 });

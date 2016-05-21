@@ -1,5 +1,7 @@
 
-export class NumberArray {
+import {ArrayUtil} from "./array-util";
+
+export class NumberArray extends ArrayUtil {
 
     /**
      * Generate a list of numbers starting in `initialValue`, stepping `step` between numbers and generating a total of

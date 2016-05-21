@@ -1,4 +1,5 @@
 
+import {NumberArray} from "./util/number-array";
 /**
  * Performs an in-place selection sort.
  *
@@ -9,21 +10,17 @@ export function selectionSort(list: number[]): number[] {
     let N = list.length;
 
     for (let i = 0; i < N; i++) {
-        let minVal = list[i];
-        let minIndex = i;
+        let min = i;
 
         // find minimum item among [i, N[ items
         for (let j = i + 1; j < N; j++) {
-            if (list[j] < minVal) {
-                minVal = list[j];
-                minIndex = j;
+            if (list[j] < list[min]) {
+                min = j;
             }
         }
 
         // swap
-        let t = list[i];
-        list[i] = minVal;
-        list[minIndex] = t;
+        NumberArray.swap(list, i, min);
     }
 
     return list;
