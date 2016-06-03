@@ -6,8 +6,8 @@ import {selectionSort} from "../selection-sort";
 
 describe('Selection Sort', function () {
     it('should sort an array of numbers', function () {
-        let originalList = NumberArray.generate(100);
+        let originalList = Array.from(NumberArray.generate(100));
         let shuffled = shuffle(NumberArray.clone(originalList));
-        assert(NumberArray.compare(originalList, selectionSort(shuffled)), 'List should be sorted');
+        assert(NumberArray.compare(Array.from(originalList), selectionSort(shuffled)), 'List should be sorted');
     });
 });

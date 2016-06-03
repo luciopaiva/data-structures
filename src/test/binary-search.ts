@@ -10,7 +10,7 @@ describe('Binary Search', function () {
         let MAX_STEP = 10;
         let getRandomNumber = () => 1 + Math.floor(Math.random() * MAX_STEP);
         
-        let list = NumberArray.generate(N, getRandomNumber(), getRandomNumber);
+        let list = Array.from(NumberArray.generate(N, getRandomNumber(), getRandomNumber));
 
         let selectedIndex = Math.floor(Math.random() * N);
         let itemToBeFound = list[selectedIndex];

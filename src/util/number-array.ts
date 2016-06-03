@@ -20,13 +20,12 @@ export class NumberArray extends ArrayUtil {
      * @param step the gap between each pair of numbers in the sequence, or a function that returns the gap
      * @returns {Array} the generated list of numbers
      */
-    public static generate(n: number, initialValue: number = 0, step: (number|StepFunction) = 1): number[] {
-        let result = [];
+    public static *generate(n: number, initialValue: number = 0,
+                            step: (number|StepFunction) = 1): IterableIterator<number> {
         let val = initialValue;
         for (let i = 0; i < n; i++) {
+            yield val;
             val += isStepFunction(step) ? step() : step;
-            result.push(val);
         }
-        return result;
     }
 }
