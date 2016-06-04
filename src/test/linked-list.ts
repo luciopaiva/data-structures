@@ -44,9 +44,9 @@ describe('Linked List', function () {
 
         // remove using negative index
         linkedList.add(13, 25, 42);
+        assert.strictEqual(linkedList.remove(-3), 13);
+        assert.strictEqual(linkedList.remove(-2), 25);
         assert.strictEqual(linkedList.remove(-1), 42);
-        assert.strictEqual(linkedList.remove(-1), 25);
-        assert.strictEqual(linkedList.remove(-1), 13);
     });
 
     it('should work with strings too', function () {

@@ -1,16 +1,18 @@
 
 class Entry<T> {
     public value: T;
+    public previous: Entry<T>;
     public next: Entry<T>;
 
     constructor (value: T) {
         this.value = value;
+        this.previous = null;
         this.next = null;
     }
 }
 
 /**
- * Simple single-direction linked list, but with some cool features:
+ * A doubly linked list with some cool features:
  *
  * - lets you `add()` more than one value at once
  * - lets you `remove()` from the tail by using negative indices
@@ -39,6 +41,7 @@ export class LinkedList<T> implements Iterable<T> {
                 this.tail = this.head = entry;
             } else {
                 this.tail.next = entry;
+                entry.previous = this.tail;
                 this.tail = entry;
             }
         });
@@ -54,32 +57,50 @@ export class LinkedList<T> implements Iterable<T> {
      */
     public remove(atPosition: number): T {
 
-        if (atPosition < 0) {
-            atPosition = this._size + atPosition;
+        let forward = atPosition >= 0;
+
+        if (!forward) {
+            atPosition = Math.abs(atPosition + 1);
         }
-        if (atPosition < 0 || atPosition >= this._size) {
-            return null;
+
+        if (atPosition >= this._size) {
+            return null;  // out of bounds
         }
+
+        let hopsToGo = atPosition;
 
         let previous = null;
-        let current = this.head;
+        let current = forward ? this.head : this.tail;
 
-        while (atPosition > 0) {
-            previous = current;
-            current = current.next;
-            atPosition--;
-        }
-
-        if (previous === null) {
-            // removing the head
-            this.head = this.head.next;
+        if (hopsToGo === 0) {
+            // removing either the head or the tail
+            if (forward) {
+                this.head = this.head.next;
+            } else {
+                this.tail = this.tail.previous;
+            }
         } else {
-            previous.next = current.next;
-        }
+            while (hopsToGo > 0) {
+                previous = current;
+                current = forward ? current.next : current.previous;
+                hopsToGo--;
+            }
 
-        // fix the tail in case we removed the last item
-        if (current === this.tail) {
-            this.tail = previous;
+            if (forward) {
+                previous.next = current.next;
+            } else {
+                previous.previous = current.previous;
+            }
+
+            // fix the head in case we removed the first item
+            if (current === this.head) {
+                this.head = previous;
+            }
+
+            // fix the tail in case we removed the last item
+            if (current === this.tail) {
+                this.tail = previous;
+            }
         }
 
         this._size--;
