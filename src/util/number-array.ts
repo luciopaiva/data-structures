@@ -28,4 +28,23 @@ export class NumberArray extends ArrayUtil {
             val += isStepFunction(step) ? step() : step;
         }
     }
+
+    /**
+     * Check if a given list of numbers is sorted.
+     *
+     * Obs.: it allows duplicates in the list.
+     *
+     * @param list the list to be checked
+     * @param ascending whether the list should be in ascending or descending order
+     * @returns true if the list is sorted, false otherwise
+     */
+    public static isSorted(list: number[], ascending: boolean = true): boolean {
+        let N = list.length;
+        for (let i = 1; i < N; i++) {
+            if (ascending ? list[i] < list[i-1] : list[i] > list[i-1]) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
