@@ -2,7 +2,6 @@
 import assert = require("assert");
 import {NumberArray} from "../util/number-array";
 import {LinkedList} from "../linked-list";
-import List = Mocha.reporters.List;
 import {ArrayUtil} from "../util/array-util";
 
 describe('Linked List', function () {

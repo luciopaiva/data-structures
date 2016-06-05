@@ -49,6 +49,33 @@ export class LinkedList<T> implements Iterable<T> {
         this._size += items.length;
     }
 
+    public get(atPosition: number): T {
+
+        let forward = atPosition >= 0;
+
+        if (!forward) {
+            atPosition = Math.abs(atPosition + 1);
+        }
+
+        if (atPosition >= this._size) {
+            return null;  // out of bounds
+        }
+
+        if (atPosition === 0) {
+            // removing either the head or the tail
+            return forward ? this.head.value: this.tail.value;
+        } else {
+            let hopsToGo = atPosition;
+            let current = forward ? this.head : this.tail;
+
+            while (hopsToGo > 0) {
+                current = forward ? current.next : current.previous;
+                hopsToGo--;
+            }
+            return current.value;
+        }
+    }
+
     /**
      * Removes an item from the linked list, returning the removed item or null if the position is out of bounds.
      *
@@ -128,5 +155,13 @@ export class LinkedList<T> implements Iterable<T> {
                 };
             }
         };
+    }
+
+    public toString(): string {
+        let result = [];
+        for (let item of this) {
+            result.push(item.toString());
+        }
+        return result.join(', ');
     }
 }
