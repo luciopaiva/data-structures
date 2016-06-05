@@ -1,7 +1,10 @@
 
 import {NumberArray} from "./util/number-array";
 /**
- * Performs an in-place selection sort.
+ * Performs a selection sort.
+ *
+ * - runs in O(n^2) time
+ * - runs in-place, i.e., doesn't need auxiliary structures
  *
  * @param list the list to be sorted
  * @returns {number[]} the same input list, sorted, returned just for convenience
@@ -9,7 +12,7 @@ import {NumberArray} from "./util/number-array";
 export function selectionSort(list: number[]): number[] {
     let N = list.length;
 
-    for (let i = 0; i < N; i++) {
+    for (let i = 0; i < N - 1; i++) {
         let min = i;
 
         // find minimum item among [i, N[ items
