@@ -14,7 +14,8 @@ class Entry<K, V> {
     }
 
     public toString(): string {
-        return this.key.toString() + ':' + this.value.toString();
+        let value = this.value !== null ? this.value.toString() : 'null';
+        return this.key.toString() + ':' + value;
     }
 }
 
@@ -50,7 +51,7 @@ export class HashMap<K, V> implements Iterable<Entry<K, V>> {
         if (typeof key !== 'number') {
             throw new Error('Currently, only numbers are supported as keys');
         }
-        return Math.round(key as any);
+        return Math.abs(Math.round(key as any));
     }
 
     private hashToPosition(hashCode: number): number {
@@ -174,6 +175,18 @@ export class HashMap<K, V> implements Iterable<Entry<K, V>> {
                 };
             }
         };
+    }
+
+    public *keys(): IterableIterator<K> {
+        for (let item of this) {
+            yield item.key;
+        }
+    }
+
+    public *values(): IterableIterator<V> {
+        for (let item of this) {
+            yield item.value;
+        }
     }
 
     public size(): number {

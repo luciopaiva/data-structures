@@ -160,7 +160,7 @@ export class LinkedList<T> implements Iterable<T> {
     public toString(): string {
         let result = [];
         for (let item of this) {
-            result.push(item.toString());
+            result.push(item !== null ? item.toString() : 'null');
         }
         return result.join(', ');
     }
