@@ -1,10 +1,11 @@
 
 import {NumberArray} from "./util/number-array";
+
 /**
  * Performs a selection sort.
  *
- * - runs in O(n^2) time
- * - runs in-place, i.e., doesn't need auxiliary structures
+ * Complexity is O(n^2), but it doesn't need any auxiliary structures during the sorting process. Besides that, the
+ * algorithm is very simple to implement.
  *
  * @param list the list to be sorted
  * @returns {number[]} the same input list, sorted, returned just for convenience
