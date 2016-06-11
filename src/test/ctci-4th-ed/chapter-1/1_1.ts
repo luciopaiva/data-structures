@@ -1,35 +1,37 @@
 
 import assert = require("assert");
-import {OnlyUniqueCharacters} from "../../../ctci-4ed/chapter-1/1_1";
+import { uniqueWithMap } from "../../../ctci-4ed/chapter-1/1_1/unique-with-map";
+import { uniqueAscii } from "../../../ctci-4ed/chapter-1/1_1/unique-ascii";
+import { uniqueQuadratic } from "../../../ctci-4ed/chapter-1/1_1/unique-quadratic";
 
 describe('Problem 1.1', function () {
     describe('Solution using a map', function () {
         it('should pass with only unique characters', function () {
-            assert(OnlyUniqueCharacters.checkByUsingMap('abcde'), 'wrongly reported duplicate characters');
+            assert(uniqueWithMap('abcde'), 'wrongly reported duplicate characters');
         });
 
         it('should fail with duplicate characters', function () {
-            assert(!OnlyUniqueCharacters.checkByUsingMap('abcda'), 'wrongly reported unique characters');
+            assert(!uniqueWithMap('abcda'), 'wrongly reported unique characters');
         });
     });
 
     describe('Solution using an auxiliary array', function () {
         it('should pass with only unique characters', function () {
-            assert(OnlyUniqueCharacters.checkUsingArray('abcde'), 'wrongly reported duplicate characters');
+            assert(uniqueAscii('abcde'), 'wrongly reported duplicate characters');
         });
 
         it('should fail with duplicate characters', function () {
-            assert(!OnlyUniqueCharacters.checkUsingArray('abcda'), 'wrongly reported unique characters');
+            assert(!uniqueAscii('abcda'), 'wrongly reported unique characters');
         });
     });
 
     describe('Solution traversing the array twice', function () {
         it('should pass with only unique characters', function () {
-            assert(OnlyUniqueCharacters.checkByTraversingTwice('abcde'), 'wrongly reported duplicate characters');
+            assert(uniqueQuadratic('abcde'), 'wrongly reported duplicate characters');
         });
 
         it('should fail with duplicate characters', function () {
-            assert(!OnlyUniqueCharacters.checkByTraversingTwice('abcda'), 'wrongly reported unique characters');
+            assert(!uniqueQuadratic('abcda'), 'wrongly reported unique characters');
         });
     });
 
