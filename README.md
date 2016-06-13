@@ -15,11 +15,12 @@ To run it:
 
 # To Do List
 
-* Heap
 * Heapsort
+* Stack
+* Queue
+* Quick median
 * B Tree
 * R Tree
-* Quadtree
 * Octree
 * the class of [shortest path problems](https://en.wikipedia.org/wiki/Shortest_path_problem)
 * [Maximum flow](https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm)
